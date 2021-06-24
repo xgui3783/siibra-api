@@ -10,6 +10,8 @@ WORKDIR /app
 
 RUN python -m pip install -U pip
 
+RUN git clone -b pr_bgFetchEbrainsData https://github.com/fzj-inm1-bda/siibra-python.git
+RUN python -m pip install ./siibra-python
 RUN python -m pip install -r app/requirements.txt
 RUN python -m pip install anytree
 RUN python -m pip install pillow
