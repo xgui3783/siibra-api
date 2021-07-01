@@ -10,7 +10,9 @@ WORKDIR /app
 
 RUN python -m pip install -U pip
 
-RUN if [ "$DEPLOY_ENVIRONMENT" = "production" ] ; then python -m pip install -r requirements/prod.txt ; else python -m pip install -r requirements/dev.txt ; fi
+RUN git clone -b pr_enhEbrainsFeat https://github.com/FZJ-INM1-BDA/siibra-python.git
+RUN python -m pip install ./siibra-python
+RUN python -m pip install -r requirements/common.txt
 RUN python -m pip install anytree
 RUN python -m pip install pillow
 RUN python -m pip install scikit-image

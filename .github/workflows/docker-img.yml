@@ -1,9 +1,6 @@
 name: '[docker image]'
 
-on:
-  push:
-    branches:
-    - master
+on: [ 'push' ]
 
 jobs:
   build-docker-img:
@@ -42,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       OKD_ENDPOINT: https://okd-dev.hbp.eu:443
-      OKD_PROJECT: siibra-api
+      OKD_PROJECT: interactive-atlas-viewer
       OKD_SECRET: ${{ secrets.OKD_DEV_SECRET }}
       
     needs: build-docker-img
