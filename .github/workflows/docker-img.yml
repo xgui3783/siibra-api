@@ -15,6 +15,7 @@ jobs:
     - name: 'test run'
       run: |
         echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+        echo "GITHUB_REF: $GITHUB_REF"
 
   # build-docker-img:
   #   runs-on: ubuntu-latest
@@ -26,7 +27,12 @@ jobs:
   #   - name: 'Set DOCKER_IMG_TAG'
   #     run: |
   #       echo "Using github.ref: $GITHUB_REF"
-  #       echo "DOCKER_IMG_TAG=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+  #       if [ "$GITHUB_EVENT_NAME" = "push" ]
+  #       then
+  #         echo "DOCKER_IMG_TAG=latest" >> $GITHUB_ENV
+  #       else
+  #         echo "DOCKER_IMG_TAG=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+  #       fi
   #   - name: 'Build docker image'
   #     run: |
   #       DOCKER_BUILT_TAG=${{ env.DOCKER_REGISTRY }}${{ env.DOCKER_IMG }}:$DOCKER_IMG_TAG
